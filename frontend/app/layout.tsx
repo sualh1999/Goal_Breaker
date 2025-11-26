@@ -72,7 +72,7 @@ export default function RootLayout({
                 </button>
               </SheetTrigger>
               <SheetContent side="left" className="w-64">
-                <Sidebar onLinkClick={() => setIsSheetOpen(false)} />
+                <Sidebar onLinkClick={() => setIsSheetOpen(false)} isCollapsed={false} />
               </SheetContent>
             </Sheet>
             {/* Main content */}
