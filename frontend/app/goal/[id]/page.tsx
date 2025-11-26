@@ -57,7 +57,7 @@ export default function GoalDetailPage() { // Removed params from here
   }, [goalId])
 
   const handleTaskStatusChange = async (taskId: string, currentStatus: 'pending' | 'completed') => {
-    const newStatus = currentStatus === 'completed' ? 'pending' : 'completed'
+    const newStatus: 'pending' | 'completed' = currentStatus === 'completed' ? 'pending' : 'completed'
     try {
       // Optimistic update
       setGoal((prevGoal) => {
