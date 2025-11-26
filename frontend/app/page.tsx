@@ -49,6 +49,7 @@ export default function HomePage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     setError(null)
+    console.log('API_BASE_URL:', process.env.NEXT_PUBLIC_API_URL);
     try {
       const response = await axios.post(`${API_BASE_URL}/goals/`, {
         goal: values.goal,
