@@ -10,6 +10,8 @@ import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ReloadIcon } from '@radix-ui/react-icons' // Assuming Radix icons are available or can be added
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface Task {
   id: string
   title: string
@@ -37,7 +39,7 @@ export default function GoalDetailPage() { // Removed params from here
     setIsLoading(true)
     setError(null)
     try {
-      const response = await axios.get(`http://localhost:8000/goals/${goalId}`)
+      const response = await axios.get(`${API_BASE_URL}/goals/${goalId}`)
       setGoal(response.data)
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
@@ -68,7 +70,7 @@ export default function GoalDetailPage() { // Removed params from here
         return { ...prevGoal, tasks: updatedTasks }
       })
 
-      await axios.patch(`http://localhost:8000/tasks/${taskId}`, { status: newStatus })
+      await axios.patch(`${API_BASE_URL}/tasks/${taskId}`, { status: newStatus })
       // If server update fails, fetch again to revert optimistic update
       // await fetchGoal(); 
     } catch (err) {
@@ -82,7 +84,7 @@ export default function GoalDetailPage() { // Removed params from here
     setIsRegenerating(true)
     setError(null)
     try {
-      const response = await axios.post(`http://localhost:8000/goals/${goalId}/regenerate`)
+      const response = await axios.post(`${API_BASE_URL}/goals/${goalId}/regenerate`)
       setGoal(response.data)
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {

@@ -9,6 +9,8 @@ import axios from 'axios'
 import { addStoredGoal } from '@/lib/local-storage'
 import { ReloadIcon } from '@radix-ui/react-icons'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -48,7 +50,7 @@ export default function HomePage() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await axios.post('http://localhost:8000/goals/', {
+      const response = await axios.post(`${API_BASE_URL}/goals/`, {
         goal: values.goal,
       })
       addStoredGoal({ id: response.data.id, title: response.data.goal_text }) // Save to local storage
